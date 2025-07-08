@@ -6,7 +6,7 @@
 /*   By: nogerace <nogerace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 22:17:50 by nogerace          #+#    #+#             */
-/*   Updated: 2025/07/08 18:51:28 by nogerace         ###   ########.fr       */
+/*   Updated: 2025/07/08 19:18:16 by nogerace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,16 @@ bool	init_stack_a(t_stack_node **a, char **argv)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
+		{
+			free_stack(a);
 			return (false);
+		}
 		n = ft_atol(argv[i]);
-		if (n > INT_MAX || n < INT_MIN)
+		if (n > INT_MAX || n < INT_MIN || error_duplicate(*a, (int)n))
+		{
+			free_stack(a);
 			return (false);
-		if (error_duplicate(*a, (int)n))
-			return (false);
+		}
 		append_node(a, (int)n);
 		i++;
 	}
