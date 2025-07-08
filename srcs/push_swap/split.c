@@ -6,7 +6,7 @@
 /*   By: nogerace <nogerace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 22:19:40 by nogerace          #+#    #+#             */
-/*   Updated: 2025/07/04 23:14:30 by nogerace         ###   ########.fr       */
+/*   Updated: 2025/07/08 18:50:49 by nogerace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,19 @@ char	**split(char *s, char c)
 	}
 	result_array[i] = NULL;
 	return (result_array);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

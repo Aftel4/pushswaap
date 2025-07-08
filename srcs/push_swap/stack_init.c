@@ -6,7 +6,7 @@
 /*   By: nogerace <nogerace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 22:17:50 by nogerace          #+#    #+#             */
-/*   Updated: 2025/07/04 23:15:35 by nogerace         ###   ########.fr       */
+/*   Updated: 2025/07/08 18:51:28 by nogerace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	append_node(t_stack_node **stack, int n)
 	}
 }
 
-void	init_stack_a(t_stack_node **a, char **argv)
+bool	init_stack_a(t_stack_node **a, char **argv)
 {
 	long	n;
 	int		i;
@@ -68,15 +68,16 @@ void	init_stack_a(t_stack_node **a, char **argv)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			free_errors(a);
+			return (false);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free_errors(a);
+			return (false);
 		if (error_duplicate(*a, (int)n))
-			free_errors(a);
+			return (false);
 		append_node(a, (int)n);
 		i++;
 	}
+	return (true);
 }
 
 t_stack_node	*get_cheapest(t_stack_node *stack)

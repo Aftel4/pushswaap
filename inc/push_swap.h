@@ -6,7 +6,7 @@
 /*   By: nogerace <nogerace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 20:06:40 by nogerace          #+#    #+#             */
-/*   Updated: 2025/07/04 23:26:33 by nogerace         ###   ########.fr       */
+/*   Updated: 2025/07/08 18:58:27 by nogerace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				error_duplicate(t_stack_node *a, int n);
 void			free_stack(t_stack_node **stack);
 void			free_errors(t_stack_node **a);
 
-void			init_stack_a(t_stack_node **a, char **argv);
+bool			init_stack_a(t_stack_node **a, char **argv);
 char			**split(char *s, char c);
 
 void			init_nodes_a(t_stack_node *a, t_stack_node *b);
@@ -49,6 +49,10 @@ t_stack_node	*find_last(t_stack_node *stack);
 bool			stack_sorted(t_stack_node *stack);
 t_stack_node	*find_min(t_stack_node *stack);
 t_stack_node	*find_max(t_stack_node *stack);
+void			free_split(char **split);
+int				free_and_exit(char **argv, bool split_used);
+void			sort_all(t_stack_node **a, t_stack_node **b);
+void			free_argv(char **argv);
 
 void			sa(t_stack_node **a, bool print);
 void			sb(t_stack_node **b, bool print);
